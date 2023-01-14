@@ -1,0 +1,5 @@
+{
+  "project_slug": "todo-api" ,
+  "db_host": "placeholder-for-db-host",
+  "db_password_planton_cloud_secret_id": "placeholder-for-planton-cloud-secret-id"
+}

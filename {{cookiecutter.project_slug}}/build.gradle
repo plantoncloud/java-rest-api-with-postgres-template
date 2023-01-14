@@ -1,0 +1,39 @@
+plugins {
+    id "org.springframework.boot" version "2.6.6"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "java"
+    id "com.google.cloud.artifactregistry.gradle-plugin" version "2.1.5"
+}
+
+group = "com.todo"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "17"
+
+bootJar {
+    archiveFileName = "app.jar"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web:2.6.7')
+    implementation('org.springframework.boot:spring-boot-starter-actuator:2.6.7')
+    implementation('org.springframework.boot:spring-boot-starter-security:2.6.7')
+
+    implementation('org.apache.httpcomponents:httpclient:4.5.13')
+
+    implementation('org.projectlombok:lombok:1.18.24')
+    annotationProcessor('org.projectlombok:lombok:1.18.24')
+
+    implementation('org.mapstruct:mapstruct:1.5.1.Final')
+    annotationProcessor('org.mapstruct:mapstruct-processor:1.5.1.Final')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test:2.7.0')
+}
+
+test {
+    useJUnitPlatform()
+}

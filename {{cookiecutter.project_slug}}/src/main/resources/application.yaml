@@ -1,0 +1,29 @@
+server:
+  port: ${PORT:8080}
+logging:
+  level:
+    root: ${LOG_LEVEL:info}
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %level %logger.%M - %msg%n"
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  flyway:
+    driver-class-name: org.postgresql.Driver
+    locations: "db/migration/postgres/public"
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: none
+        show-sql: true
+        default_schema: ${DB_SCHEMA}
+        default_catalog: ${DB_NAME}

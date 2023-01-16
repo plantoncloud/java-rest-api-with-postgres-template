@@ -1,5 +1,8 @@
 {
   "project_slug": "todo-api" ,
+  "db_name": "postgres",
+  "db_schema": "public",
   "db_host": "placeholder-for-db-host",
+  "db_username": "postgres",
   "db_password_planton_cloud_secret_id": "placeholder-for-planton-cloud-secret-id"
 }

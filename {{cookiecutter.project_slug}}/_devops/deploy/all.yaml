@@ -10,10 +10,12 @@ container_resource_requests:
   cpu: 50m
   memory: 256Mi
 
-#key value pairs of environment variables. key is the environment variable and the value is the value of environment variable.
-#ex: ENV: dev
-env_vars: {}
+env_vars:
+  LOG_LEVEL: info
+  DB_HOST: {{cookiecutter.db_host}}
+  DB_NAME: {{cookiecutter.db_name}}
+  DB_USERNAME: {{cookiecutter.db_username}}
+  DB_SCHEMA: {{cookiecutter.db_schema}}
 
-#key value pairs of secret environment variables. key is the environment variable and the value is the id of the secret in the google secrets manager.
-#ex: DB_PASSWORD: mycompany-abc-dev-db-password
-secrets: {}
+secrets:
+  DB_PASSWORD: {{cookiecutter.db_password_planton_cloud_secret_id}}

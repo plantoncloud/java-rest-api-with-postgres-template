@@ -74,7 +74,7 @@ public class TodoController {
         return todoMapper.generate(todoEntity.get());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/todos/{id}")
     public void deleteTodo(@PathVariable long id) throws TodoNotFoundException {
         var todoEntity = todoRepo.findById(id);
         if (todoEntity.isEmpty()) {

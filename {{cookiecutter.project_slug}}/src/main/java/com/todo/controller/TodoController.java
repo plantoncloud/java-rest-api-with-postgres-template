@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,8 +21,24 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TodoController {
 
+    // this is for demo purposes. remove it when using for production use.
+    private static HashMap<String, String> defaultRoutes;
+    static {
+        defaultRoutes = new HashMap<String, String>();
+        defaultRoutes.put("GET", "/todos");
+        defaultRoutes.put("GET", "/todos/{id}");
+        defaultRoutes.put("POST", "/todos");
+        defaultRoutes.put("PUT", "/todos/{id}");
+        defaultRoutes.put("DELETE", "/todos/{id}");
+    }
+
     private final TodoRepo todoRepo;
     private final TodoMapper todoMapper;
+
+    @GetMapping("/")
+    public Map<String, String> getDefaultRoutes() {
+        return defaultRoutes;
+    }
 
     @GetMapping("/todos")
     public List<Todo> getTodos() {
@@ -44,7 +62,8 @@ public class TodoController {
     }
 
     @PutMapping("/todos/{id}")
-    public Todo updateTodo(@PathVariable long id, @RequestBody Todo todo) throws TodoNotFoundException, InvalidTodoException {
+    public Todo updateTodo(@PathVariable long id, @RequestBody Todo todo)
+            throws TodoNotFoundException, InvalidTodoException {
         var todoEntity = todoRepo.findById(id);
         if (todoEntity.isEmpty()) {
             throw new TodoNotFoundException();
